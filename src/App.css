@@ -1,38 +1,119 @@
+body {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Poppins', sans-serif;
+  background: #bbbbf5;
+  color:#fff;
+}
+
+input,
+button {
+  box-sizing: border-box;
+  background-color: #31316b;
+}
+
+input[type='submit'],
+button {
+    cursor: pointer;
+    border: none;
+    background: #9191ed;
+    color: #000;
+    font-size: 1.1rem;
+    border-radius: 40px;
+}
+
+input[type='submit']:hover,
+button {
+  background-color: #bbbbf5;
+}
+
+input::placeholder {
+  color: #fff;
+  opacity: 0.5;
+}
+
+
 .App {
-  text-align: center;
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+  background: #141438;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 100px;
+  box-shadow: 1px 1px 10px #888888;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App h1:before {
+  margin-right: 0.5em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.AddThoughtForm {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.AddThoughtForm input {
+  padding: 1.5rem;
+  border-radius: 3px;
+  border: none;
+}
+
+.AddThoughtForm input[type='text'] {
+  flex: auto;
+  margin-right: 0.5rem;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.thoughts {
+  list-style-type: none;
+  padding: 0;
+  color:#000;
+}
+
+.Thought {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 3px;
+  background-color: #31316b;
+  color:#fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Thought .remove-button {
+  font-size: 1.3rem;
+  border: 0;
+  border-radius: 3px;
+  background: #9191ed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.Thought .remove-button:hover {
+  color: #000;
+  background-color: #bbbbf5;
+}
+
+@media (max-width: 690px) {
+  .App {
+    max-width: 200px;
   }
-  to {
-    transform: rotate(360deg);
+
+  body {
+    font-size: 1rem;
+  }
+
+  .AddThoughtForm input[type='text'],
+  input[type='submit'],
+  button {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .AddThoughtForm {
+    gap: 10px;
   }
 }

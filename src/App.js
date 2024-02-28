@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { AddThoughtForm } from './AddThoughtForm';
+import { Thought } from './Thought';
 import './App.css';
 
-function App() {
+export default function App() {
+  const [thoughts, setThoughts] = useState([]);
+
+  const addThought = (thought) => {
+    setThoughts((prevThoughts) => [thought, ...prevThoughts]);
+  };
+
+  const removeThought = (thoughtIdToRemove) => {
+    setThoughts((prevThoughts) =>
+      prevThoughts.filter((thought) => thought.id !== thoughtIdToRemove)
+    );
+  };
+
+  useEffect(() => {
+    const storedThoughts = JSON.parse(localStorage.getItem('thoughts'));
+    if (storedThoughts) {
+      setThoughts(storedThoughts);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('thoughts', JSON.stringify(thoughts));
+  }, [thoughts]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>To-Do List</h1>
       </header>
+      <main>
+        <AddThoughtForm addThought={addThought} />
+        <ul className="thoughts">
+          {thoughts.map((thought) => (
+            <Thought key={thought.id} thought={thought} removeThought={removeThought} />
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }
-
-export default App;
